@@ -2,32 +2,36 @@ import { signOut } from 'next-auth/react';
 import React from 'react';
 
 import useCurrentUser from '../../hooks/useCurrentUser';
+import useCurrentProfile from '../../hooks/useCurrentProfile';
+import Link from 'next/link';
 
 interface AccountMenuProps {
-    visible?: boolean;
+  visible?: boolean;
 }
 
-const AccountMenu: React.FC<AccountMenuProps> = ({ visible }) => {
-    const { data: currentUser } = useCurrentUser();
+const AccountMenu: React.FC<AccountMenuProps> = ({visible}) => {
+  const {data: currentProfile} = useCurrentProfile();
+  console.log('profil', currentProfile);
 
-    if (!visible) {
-        return null;
-    }
+  if (!visible) {
+    return null;
+  }
 
-    return (
-        <div className="bg-black w-56 absolute top-14 right-0 py-5 flex-col border-2 border-gray-800 flex">
-            <div className="flex flex-col gap-3">
-                <div className="px-3 group/item flex flex-row gap-3 items-center w-full">
-                    <img className="w-8 rounded-md" src="/images/default-blue.png" alt="" />
-                    <p className="text-white text-sm group-hover/item:underline">{currentUser?.name}</p>
-                </div>
-            </div>
-            <hr className="bg-gray-600 border-0 h-px my-4" />
-            <div onClick={() => signOut()} className="px-3 text-center text-white text-sm hover:underline">
-                Se déconnecter de Netflix
-            </div>
+  return (
+      <div className="bg-black w-56 absolute top-14 right-0 py-5 flex-col border-2 border-gray-800 flex">
+        <div className="flex flex-col gap-3">
+          <div className="px-3 group/item flex flex-row gap-3 items-center w-full">
+            <img className="w-8 rounded-md" src={currentProfile?.image ? currentProfile.image : '/images/default-red.png'} alt=""/>
+            <p className="text-white text-sm group-hover/item:underline">{currentProfile?.name}</p>
+          </div>
         </div>
-    )
+        <hr className="bg-gray-600 border-0 h-px my-4"/>
+        <Link href="/profiles" className="px-3 text-center text-white text-sm hover:underline mb-2">Changer de profil</Link>
+        <div onClick={() => signOut()} className="px-3 text-center text-white text-sm hover:underline">
+          Se déconnecter de Netflix
+        </div>
+      </div>
+  )
 }
 
 export default AccountMenu;

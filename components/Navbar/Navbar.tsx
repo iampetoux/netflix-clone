@@ -4,6 +4,7 @@ import { BellIcon, MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react
 import AccountMenu from '../../components/AccountMenu/AccountMenu';
 import MobileMenu from '../../components/MobileMenu/MobileMenu';
 import NavbarItem from '../../components/NavbarItem/NavbarItem';
+import useCurrentProfile from '../../hooks/useCurrentProfile';
 
 const TOP_OFFSET = 66;
 
@@ -12,9 +13,10 @@ const Navbar = () => {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const [showBackground, setShowBackground] = useState(false);
 
+    const { data: currentProfile } = useCurrentProfile();
+
     useEffect(() => {
         const handleScroll = () => {
-            console.log(window.scrollY)
             if (window.scrollY >= TOP_OFFSET) {
                 setShowBackground(true)
             } else {
@@ -43,11 +45,9 @@ const Navbar = () => {
                 <img src="/images/logo.png" className="h-4 lg:h-7" alt="Logo" />
                 <div className="flex-row ml-8 gap-7 hidden lg:flex">
                     <NavbarItem label="Accueil" active />
-                    <NavbarItem label="Séries" />
                     <NavbarItem label="Films" />
-                    <NavbarItem label="Populaire en ce moment" />
+                    <NavbarItem label="Séries (COMING SOON)" />
                     <NavbarItem label="Ma liste" />
-                    <NavbarItem label="Parcourir par langues" />
                 </div>
                 <div onClick={toggleMobileMenu} className="lg:hidden flex flex-row items-center gap-2 ml-8 cursor-pointer relative">
                     <p className="text-white text-sm">Browse</p>
@@ -63,7 +63,7 @@ const Navbar = () => {
                     </div>
                     <div onClick={toggleAccountMenu} className="flex flex-row items-center gap-2 cursor-pointer relative">
                         <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
-                            <img src="/images/default-blue.png" alt="" />
+                            <img src={currentProfile?.image ? currentProfile.image : '/images/default-red.png'} alt="" />
                         </div>
                         <ChevronDownIcon className={`w-4 text-white fill-white transition ${showAccountMenu ? 'rotate-180' : 'rotate-0'}`} />
                         <AccountMenu visible={showAccountMenu} />

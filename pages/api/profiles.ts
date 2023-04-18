@@ -14,7 +14,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             where: {
                 userId: currentUser?.id,
             }
-        })
+        });
+        if(profiles.length === 0) {
+            const newProfile = await prismadb.profile.create({
+                data: {
+                    userId: currentUser?.id,
+                    name: currentUser.name,
+                    image: '',
+                }
+            });
+            profiles.push(newProfile);
+        }
 
         return res.status(200).json(profiles);
     } catch (error) {
