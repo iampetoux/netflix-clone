@@ -54,7 +54,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 throw new Error('Invalid ID');
             }
 
-            const updatedFavoriteIds = without(profile.favoriteIds, movieId);
+            const updatedFavoriteIds = without(profile?.favoriteIds, movieId);
 
             const updatedProfile = await prismadb.profile.update({
                 where: {
