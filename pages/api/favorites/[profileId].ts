@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const profile = await prismadb.profile.findUnique({
       where: {
-        id: profileId,
+        id: profileId!,
       },
     });
 
