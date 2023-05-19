@@ -2,7 +2,7 @@ import axios from "axios";
 import {useCallback, useState} from "react";
 import Input from "../components/Input/Input";
 import { getSession, signIn } from 'next-auth/react';
-import { FcGoogle }from "react-icons/Fc";
+import { FcGoogle }from "react-icons/fc";
 import { NextPageContext } from 'next';
 
 export async function getServerSideProps(context: NextPageContext) {
