@@ -1,9 +1,26 @@
 import axios from "axios";
 import {useCallback, useState} from "react";
 import Input from "../components/Input/Input";
-import { signIn } from 'next-auth/react';
-import {useRouter} from "next/router";
+import { getSession, signIn } from 'next-auth/react';
 import { FcGoogle }from "react-icons/Fc";
+import { NextPageContext } from 'next';
+
+export async function getServerSideProps(context: NextPageContext) {
+    const session = await getSession(context);
+
+    if (session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: {}
+    }
+}
 
 const Auth = () => {
     const [name, setName] = useState('');
@@ -57,11 +74,11 @@ const Auth = () => {
                         <div className="flex flex-col gap-4">
                             { variant === 'register' && (
                                 <>
-                                    <Input label="Prénom et nom de famille" onChange={(ev) => setName(ev.target.value)} id="name" value={name} />
+                                    <Input label="Prénom et nom de famille" onChange={(e: any) => setName(e.target.value)} id="name" value={name} />
                                 </>
                             )}
-                            <Input label="Adresse Email" onChange={(ev) => setEmail(ev.target.value)} id="email" type="email" value={email} />
-                            <Input label="Mot de passe" onChange={(ev) => setPassword(ev.target.value)} id="password" type="password" value={password} />
+                            <Input label="Adresse Email" onChange={(e: any) => setEmail(e.target.value)} id="email" type="email" value={email} />
+                            <Input label="Mot de passe" onChange={(e: any) => setPassword(e.target.value)} id="password" type="password" value={password} />
                         </div>
                         <button onClick={variant === 'login' ? login : register} className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">{variant === 'login' ? 'Connexion' : 'Inscription'}</button>
                         <div className="flex flex-row items-center gap-4 mt-8 justify-center">

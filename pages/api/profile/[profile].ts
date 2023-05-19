@@ -10,6 +10,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { profile } = req.query;
 
+    if (typeof profile !== 'string') {
+      throw new Error('Invalid Id');
+    }
+
+    if (!profile) {
+      throw new Error('Missing Id');
+    }
+
     const { currentUser } = await serverAuth(req);
 
     if (!currentUser) {

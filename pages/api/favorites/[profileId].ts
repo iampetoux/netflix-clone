@@ -10,6 +10,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { profileId } = req.query;
 
+    if (typeof profileId !== 'string') {
+      throw new Error('Invalid Id');
+    }
+
+    if (!profileId) {
+      throw new Error('Missing Id');
+    }
+
     const profile = await prismadb.profile.findUnique({
       where: {
         id: profileId!,
