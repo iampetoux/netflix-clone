@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Demo
 
-To see the project in action, visit [https://nextflix-mf.mfcorp.fr](https://nextflix-mf.mfcorp.fr).
+To see the project in action, visit [https://nextflix.mfcorp.fr](https://nextflix.mfcorp.fr).
 
 ## Getting Started
 
