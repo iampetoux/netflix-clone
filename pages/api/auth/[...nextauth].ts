@@ -28,7 +28,7 @@ export default NextAuth({
             },
             async authorize(credentials) {
                 if (!credentials?.email || !credentials?.password) {
-                    throw new Error('Veuillez entrer un email et un mot de passe');
+                    throw new Error('Veuillez entrer une adresse e-mail et un mot de passe.');
                 }
 
                 const user = await prismadb.user.findUnique({
@@ -38,7 +38,7 @@ export default NextAuth({
                 });
 
                 if (!user || !user.hashedPassword) {
-                    throw new Error('Aucun compte avec cette adresse email');
+                    throw new Error('Nous n\'avons pas trouvé de compte avec cette adresse e-mail. Veuillez réessayer ou créez un nouveau compte.');
                 }
 
                 const isCorrectPassword = await compare(
