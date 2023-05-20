@@ -20,7 +20,7 @@ export default function Home() {
             <Navbar />
             <Billboard />
             <div className="pb-40">
-                <MovieList title="En ce moment sur Netflix" data={movies} />
+                <MovieList title="En ce moment sur Nextflix" data={movies} />
                 <MovieList title="Ma liste" data={favorites} />
             </div>
         </>

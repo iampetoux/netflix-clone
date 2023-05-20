@@ -52,7 +52,7 @@ const Profiles = () => {
   return (
       <div className="flex items-center h-full justify-center">
         <div className="flex flex-col">
-          <h1 className="text-3xl md:text-6xl text-white text-center">Qui regarde Netflix?</h1>
+          <h1 className="text-3xl md:text-6xl text-white text-center">Qui regarde Nextflix?</h1>
           <div className="flex items-start justify-center gap-8 mt-10">
             {profiles?.map((profile: Profile, key: number) => (
                 <div onClick={() => selectProfile(profile.id)} key={key}>

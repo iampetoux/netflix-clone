@@ -28,7 +28,7 @@ const AccountMenu: React.FC<AccountMenuProps> = ({visible}) => {
         <hr className="bg-gray-600 border-0 h-px my-4"/>
         <Link href="/profiles" className="px-3 text-center text-white text-sm hover:underline mb-2">Changer de profil</Link>
         <div onClick={() => signOut()} className="px-3 text-center text-white text-sm hover:underline">
-          Se déconnecter de Netflix
+          Se déconnecter de Nextflix
         </div>
       </div>
   )
