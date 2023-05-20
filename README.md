@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Demo
+
+To see the project in action, visit [https://nextflix-mf.mfcorp.fr](https://nextflix-mf.mfcorp.fr).
+
 ## Getting Started
 
 First, run the development server:
