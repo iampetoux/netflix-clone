@@ -1,3 +1,5 @@
+![Nextflix app](https://github.com/iampetoux/nextflix/blob/main/public/images/screenshot.png?raw=true)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Demo
